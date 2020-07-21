@@ -23,7 +23,7 @@ def plot1d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
     
     if not os.path.exists(route):
         os.mkdir(route)
-    x = np.linspace(begin,end,150)
+    x = np.linspace(begin,end,200)
     y = val(x)
     
     def base_plot():
@@ -129,14 +129,15 @@ def plot1d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
     
     
 
-tit = "Rastrigin function"
+tit = "Rastrigin function with noise"
 
 #plot1d(TestFunctions.Shvel, -90,100, count = 8, title = tit)
 
 #plot1d(lambda arr: TestFunctions.Shvel(arr)+random.uniform(0,4), -90,100, count = 8, title = tit)
 
-plot1d(TestFunctions.Rastrigin, -6,7, count = 8, title = tit)
+#plot1d(TestFunctions.Rastrigin, -6,7, count = 8, title = tit)
 
+plot1d(lambda arr: TestFunctions.Rastrigin(arr)+random.uniform(0,5), -6,5, count = 8, title = tit)
 
 import imageio
 images = []
