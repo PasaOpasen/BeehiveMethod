@@ -8,6 +8,17 @@ Created on Mon Jul 20 17:28:36 2020
 import numpy as np
 import random
 import math
+from joblib import Parallel, delayed
+
+
+
+class RandomPuts:
+    @staticmethod
+    def Uniform(minimum, maximum, size):
+        return lambda: np.random.uniform(minimum, maximum, size)
+    @staticmethod
+    def Normal(mean, std, size):
+        return lambda: np.random.normal(mean, std, size)
 
 
 
@@ -16,16 +27,25 @@ class Bees:
     def __init__(self, bees, width = None):
         
         if width == None:
-            width = np.absolute(bees).max()
+            #width = np.absolute(bees).max()
+            width = (bees.max()-bees.min())*100/bees.shape[0]
+            
         
         self.x = np.array(bees)
         self.v = (np.random.random(self.x.shape) - 0.5) * width
         self.bests = self.x.copy()
         
+    @staticmethod
+    def get_Bees_from_randomputs(count, random_gen, width = None):
+        bees = np.array([random_gen() for _ in range(count)])
+        res = Bees(bees, width)
+        return res
+        
+        
     def set_function(self, f, parallel = False):
         self.f = f
         
-        self.get_vals = (lambda: np.array([f(v) for v in self.x])) if parallel else (lambda: np.array([f(v) for v in self.x]))
+        self.get_vals = (lambda: np.array(Parallel(n_jobs=-1)(delayed(f)(v) for v in self.x))) if parallel else (lambda: np.array([f(v) for v in self.x]))
         
         self.vals = self.get_vals()
         
@@ -62,10 +82,10 @@ class Bees:
 
 class Hive:
     
-    def __init__(self, bees, func,  verbose = True):
+    def __init__(self, bees, func,  parallel = False,  verbose = True):
         
         self.bees = bees
-        self.bees.set_function(func)
+        self.bees.set_function(func, parallel)
         
         
         
@@ -75,12 +95,14 @@ class Hive:
         
         if verbose:
             print(f"total bees: {self.bees.x.shape[0]}")
-            print(f"best value: {self.best_val}")
+            print(f"best value (at beggining): {self.best_val}")
         
-    def get_result(self, max_step_count = 100, max_fall_count = 30, w = 0.3, fp = 2, fg = 5, latency = 1e-9, verbose = True):
+    def get_result(self, max_step_count = 100, max_fall_count = 30, w = 0.3, fp = 2, fg = 5, latency = 1e-9,verbose = True):
         
         if latency != None:
             latency = 1 - latency
+        
+        w = 1 if math.fabs(w)>1 else math.fabs(w)
         
         count_fall = 0
         val = self.best_val
@@ -120,16 +142,33 @@ class Hive:
 class BeeHive:
     pass
 
-            
+
+class TestFunctions:
+    @staticmethod
+    def Parabol(arr):
+        return np.sum(arr**2)
+    @staticmethod
+    def Rastrigin(arr):
+        return 10*arr.size+TestFunctions.Parabol(arr) - 10*np.sum(np.cos(2*math.pi*arr))
+    @staticmethod
+    def Shvel(arr):
+        return -np.sum(arr*np.sin(np.sqrt(np.abs(arr))))
+    
+
+
         
 if __name__ == '__main__':
     
     bs = (np.random.random((200,10))-0.5)*15
     bees = Bees(bs)
     
-    func = lambda arr: np.sum( (arr-3)**2)
+    #bees = Bees.get_Bees_from_randomputs(200, RandomPuts.Uniform(-3,10, size = 10))
     
-    hive = Hive(bees,func, True)
+    #bees = Bees.get_Bees_from_randomputs(200, RandomPuts.Normal(3,2, size = 10))
+    
+    func = lambda arr: TestFunctions.Parabol(arr-3)
+    
+    hive = Hive(bees,func, parallel = False , verbose = True)
     
     res = hive.get_result(500)
 
