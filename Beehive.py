@@ -22,9 +22,12 @@ class Bees:
         self.v = (np.random.random(self.x.shape) - 0.5) * width
         self.bests = self.x.copy()
         
-    def set_function(self, f):
+    def set_function(self, f, parallel = False):
         self.f = f
-        self.vals = np.array([f(v) for v in self.x])
+        
+        self.get_vals = (lambda: np.array([f(v) for v in self.x])) if parallel else (lambda: np.array([f(v) for v in self.x]))
+        
+        self.vals = self.get_vals()
         
     def make_step(self, w, fp, fg, best_pos, best_val):
         
@@ -32,7 +35,7 @@ class Bees:
         self.x += self.v
         
         
-        new_vals = np.array([self.f(v) for v in self.x])
+        new_vals = self.get_vals()
         inds = new_vals < self.vals
         self.bests[inds,:] = self.x[inds,:].copy()
         
@@ -74,11 +77,10 @@ class Hive:
             print(f"total bees: {self.bees.x.shape[0]}")
             print(f"best value: {self.best_val}")
         
-    def get_result(self, max_step_count = 100, max_fall_count = 50, w = 0.3, fp = 2, fg = 5, max_new_percent = 99.99999, verbose = True):
+    def get_result(self, max_step_count = 100, max_fall_count = 30, w = 0.3, fp = 2, fg = 5, latency = 1e-9, verbose = True):
         
-        
-        if max_new_percent != None:
-            max_new_percent = max_new_percent/100
+        if latency != None:
+            latency = 1 - latency
         
         count_fall = 0
         val = self.best_val
@@ -88,7 +90,8 @@ class Hive:
             
             if self.best_val < val:     
                 
-                if max_new_percent != None and self.best_val/val>max_new_percent:
+                if latency != None and self.best_val/val>latency:
+                    #print(f'{self.best_val/val} > {latency}')
                     #if verbose:
                     #    print(f'I should stop if new_val/old_val > {max_new_percent} (now {self.best_val/val})')
                     #return self.best_val, self.best_pos
@@ -113,6 +116,10 @@ class Hive:
         
         return self.best_val, self.best_pos
             
+
+class BeeHive:
+    pass
+
             
         
 if __name__ == '__main__':
