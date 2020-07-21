@@ -99,10 +99,17 @@ class Hive:
         
     def get_result(self, max_step_count = 100, max_fall_count = 30, w = 0.3, fp = 2, fg = 5, latency = 1e-9,verbose = True):
         
+        
         if latency != None:
             latency = 1 - latency
         
         w = 1 if math.fabs(w)>1 else math.fabs(w)
+        
+        sm = 4/(fp+fg)
+        if sm > 1:
+            fp, fg = fp*sm, fg*sm
+        
+        
         
         count_fall = 0
         val = self.best_val
@@ -140,7 +147,15 @@ class Hive:
             
 
 class BeeHive:
-    pass
+    @staticmethod
+    def Minimize(func, bees, 
+                 max_step_count = 100, max_fall_count = 30, 
+                 w = 0.3, fp = 2, fg = 5, latency = 1e-9, 
+                 verbose = True, parallel = False):
+        #bees = Bees(bees, width)
+        hive = Hive(bees, func, parallel , verbose)
+        
+        return hive.get_result(max_step_count, max_fall_count, w, fp,fg, latency, verbose)
 
 
 class TestFunctions:
@@ -168,9 +183,11 @@ if __name__ == '__main__':
     
     func = lambda arr: TestFunctions.Parabol(arr-3)
     
-    hive = Hive(bees,func, parallel = False , verbose = True)
+    #hive = Hive(bees,func, parallel = False , verbose = True)
     
-    res = hive.get_result(500)
+    #res = hive.get_result(500)
+    
+    BeeHive.Minimize(func, bees)
 
 
 
