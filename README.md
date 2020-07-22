@@ -119,6 +119,65 @@ bees.show()
 
 ### 2nd step: create hive and get result
 
+```python
+
+
+bees = Bees(np.random.normal(loc = 2, scale = 2, size = (100,3)), width = 3)
+
+func = lambda arr: TestFunctions.Parabol(arr-3)
+
+    
+hive = Hive(bees, 
+            func, 
+            parallel = False, # use parallel evaluating of functions values for each bee? (recommented for heavy functions, f. e. integtals) 
+            verbose = True) # show info about hive 
+
+#total bees: 100
+#best value (at beggining): 0.45406041997965585
+
+# getting result
+
+best_result, best_position = hive.get_result(max_step_count = 25, # maximun count of iteraions
+                      max_fall_count = 6, # maximum count of continious iterations without better result
+                      w = 0.3, fp = 2, fg = 5, # parameters of algorithm
+                      latency = 1e-9, # if new_result/old_result > 1-latency then it was the iteration without better result
+                      verbose = True # show the progress
+                      )
+
+#new best value = 0.22369081290807669 after 4 iteration
+#new best value = 0.20481778141411794 after 5 iteration
+#new best value = 0.2036698385729661 after 6 iteration
+#new best value = 0.15570778532180615 after 7 iteration
+#new best value = 0.06772538042802272 after 8 iteration
+#new best value = 0.06060365350244633 after 9 iteration
+#new best value = 0.048967304902866424 after 10 iteration
+#new best value = 0.035531597911666886 after 11 iteration
+#new best value = 0.018238258030885895 after 12 iteration
+#new best value = 0.007999184438461721 after 13 iteration
+#new best value = 0.007095161331114254 after 14 iteration
+#new best value = 0.006010424290536399 after 15 iteration
+#new best value = 0.0054592185233458875 after 16 iteration
+#new best value = 0.003526411943370142 after 17 iteration
+#new best value = 0.003212115031845861 after 18 iteration
+#new best value = 0.001246361699255375 after 19 iteration
+#new best value = 0.0011705559906451679 after 20 iteration
+#new best value = 0.0010476941319986334 after 21 iteration
+#new best value = 0.0006265651258711051 after 22 iteration
+#new best value = 0.00041912821521993736 after 23 iteration
+#new best value = 0.0003037094325696652 after 24 iteration
+#new best value = 0.0002523002561426299 after 25 iteration
+
+
+
+# u also can use this code (without creating a hive)
+
+best_result, best_position = BeeHive.Minimize(func, bees, 
+                 max_step_count = 100, max_fall_count = 30, 
+                 w = 0.3, fp = 2, fg = 5, latency = 1e-9, 
+                 verbose = False, parallel = False)
+
+
+```
 
 ## Ways to get best solution
 
