@@ -67,9 +67,9 @@ def plot2d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
     
     
     
-    arrow_width = 0.1
-    arrow_length = 4
-    xytext = (-2, 4)  #(0, -60)
+    arrow_width = 2
+    arrow_length = 8
+    xytext = (-40, 75) #(-2, 4)  
     
     
     
@@ -80,14 +80,16 @@ def plot2d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
     
     bees = Bees(np.random.uniform(begin,end,(count,2)), width = 3)
     
+    #bees = Bees.get_Bees_from_randomputs(count, RandomPuts.Normal(0, 1.5, 2), 2)
+    
     now = bees.x
     best = bees.bests
     
     figure, axes = plt.subplots()
     base_plot()
     
-    axes.plot(best[:,0], best[:,1], 'bs', color = 'red')
-    axes.plot(now[:,0], now[:,1], 'ro', color = 'yellow')  
+    axes.plot(best[:,0], best[:,1], 'bs', color = 'red', markeredgecolor = "black")
+    axes.plot(now[:,0], now[:,1], 'ro', color = 'yellow', markeredgecolor = "black")  
     
     base_save(1)
     
@@ -102,8 +104,8 @@ def plot2d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
     figure, axes = plt.subplots()
     base_plot()
    
-    axes.plot(best[:,0], best[:,1], 'bs', color = 'red')
-    axes.plot(now[:,0], now[:,1], 'ro', color = 'yellow') 
+    axes.plot(best[:,0], best[:,1], 'bs', color = 'red', markeredgecolor = "black")
+    axes.plot(now[:,0], now[:,1], 'ro', color = 'yellow', markeredgecolor = "black") 
     
     # plt.plot(best, val(best), 'bs', color = 'red', label = 'best bee positions')
     # plt.plot(now, val(now), 'ro', color = 'green', label = 'current bee positions')
@@ -127,7 +129,7 @@ def plot2d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
     base_save(2)
     
     
-    for i in range(2,15):
+    for i in range(2,20):
         
         hive.best_val, hive.best_pos = hive.bees.make_step(0.3, 2, 5, hive.best_pos, hive.best_val)
         
@@ -151,8 +153,8 @@ def plot2d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
             
     #     plt.plot(best, val(best), 'bs', color = 'red', label = 'best bee positions')
     #     plt.plot(now, val(now), 'ro', color = 'green', label = 'current bee positions')
-        axes.plot(best[:,0], best[:,1], 'bs', color = 'red')
-        axes.plot(now[:,0], now[:,1], 'ro', color = 'yellow') 
+        axes.plot(best[:,0], best[:,1], 'bs', color = 'red', markeredgecolor = "black")
+        axes.plot(now[:,0], now[:,1], 'ro', color = 'yellow', markeredgecolor = "black") 
         
         for p, v in zip(now,v):
             axes.arrow(p[0], p[1], v[0], v[1] , width = arrow_width, length_includes_head = True,
@@ -165,24 +167,24 @@ def plot2d(func = TestFunctions.Rastrigin, begin = -5, end = 5, count = 15, titl
     
     
 
-tit = "Rastrigin function with noise (2d)"
+tit = "Shvel function with noise (2d)"
 
-#plot1d(TestFunctions.Shvel, -90,100, count = 8, title = tit)
+#plot2d(TestFunctions.Shvel, -90,100, count = 15, title = tit)
 
-#plot1d(lambda arr: TestFunctions.Shvel(arr)+random.uniform(0,4), -90,100, count = 8, title = tit)
+plot2d(lambda arr: TestFunctions.Shvel(arr)+random.uniform(0,10), -90,100, count = 15, title = tit)
 
-#plot1d(TestFunctions.Rastrigin, -6,7, count = 8, title = tit)
+#plot2d(TestFunctions.Rastrigin, -6,5, count = 15, title = tit)
 
-plot2d(lambda arr: TestFunctions.Rastrigin(arr)+random.uniform(0,5), -6,5, count = 10, title = tit)
+#plot2d(lambda arr: TestFunctions.Rastrigin(arr)+random.uniform(0,7), -6,5, count = 15, title = tit)
 
 
-# import imageio
-# images = []
-# filenames = [os.path.join(route, f'{tit}_{i}.png') for i in range(15)]
-# for filename in filenames:
-#     images.append(imageio.imread(filename))
+import imageio
+images = []
+filenames = [os.path.join(route, f'{tit}_{i}.png') for i in range(20)]
+for filename in filenames:
+    images.append(imageio.imread(filename))
     
-# imageio.mimsave(os.path.join(route,f'{tit}_movie.gif'), images, duration = 0.4)
+imageio.mimsave(os.path.join(route,f'{tit}_movie.gif'), images, duration = 0.4)
 
 
 
