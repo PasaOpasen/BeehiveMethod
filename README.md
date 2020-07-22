@@ -181,7 +181,100 @@ best_result, best_position = BeeHive.Minimize(func, bees,
 
 ## Ways to get best solution
 
+To get real global minimum u should use this algorithm with more bees, bigger ```max_step_count```, bigger ``` max_fall_count``` several parameters ```w, fp, fg```:
 
+```python
+
+
+# to get best solution
+
+
+func = lambda arr: TestFunctions.Rastrigin(arr) + TestFunctions.Shvel(arr) + 1 / (1 + np.sum(np.abs(arr)))
+
+for w in (0.1,0.3,0.5,0.8):
+    for fp in (1, 2, 3, 4.5):
+        for fg in (3, 5, 8, 15):
+            
+            # 200 bees, 10 dimentions
+            bees = Bees(np.random.uniform(low = -100, high = 100, size = (200, 10) ))
+            
+            best_val, _ = BeeHive.Minimize(func, bees, 
+                 max_step_count = 200, max_fall_count = 70, 
+                 w = 2, fp = fp, fg = fg, latency = 1e-9, 
+                 verbose = False, parallel = False)
+            
+            print(f'best val by w = {w}, fp = {fp}, fg = {fg} is {best_val}')
+
+
+#best val by w = 0.1, fp = 1, fg = 3 is 6428.695769232477
+#best val by w = 0.1, fp = 1, fg = 5 is 32.52712233771301
+#best val by w = 0.1, fp = 1, fg = 8 is 160.08392341144406
+#best val by w = 0.1, fp = 1, fg = 15 is 687.6266727861189
+#best val by w = 0.1, fp = 2, fg = 3 is 24.21891968781912
+#best val by w = 0.1, fp = 2, fg = 5 is 49.44330907798958
+#best val by w = 0.1, fp = 2, fg = 8 is 184.83187118199487
+#best val by w = 0.1, fp = 2, fg = 15 is 185.51770584709303
+#best val by w = 0.1, fp = 3, fg = 3 is 79.76934143653314
+#best val by w = 0.1, fp = 3, fg = 5 is 47.26493469211696
+#best val by w = 0.1, fp = 3, fg = 8 is 184.8646381092168
+#best val by w = 0.1, fp = 3, fg = 15 is 160.27503370261758
+#best val by w = 0.1, fp = 4.5, fg = 3 is 85.60089227083901
+#best val by w = 0.1, fp = 4.5, fg = 5 is 108.62418480388155
+#best val by w = 0.1, fp = 4.5, fg = 8 is 171.2798284181892
+#best val by w = 0.1, fp = 4.5, fg = 15 is 551.7224618400166
+#best val by w = 0.3, fp = 1, fg = 3 is 6483.765801924292
+#best val by w = 0.3, fp = 1, fg = 5 is 8.002321991449135
+#best val by w = 0.3, fp = 1, fg = 8 is 108.94659371003644
+#best val by w = 0.3, fp = 1, fg = 15 is 47.079602126734684
+#best val by w = 0.3, fp = 2, fg = 3 is 26.014123389174156
+#best val by w = 0.3, fp = 2, fg = 5 is 18.29385998055267
+#best val by w = 0.3, fp = 2, fg = 8 is 166.411456895688
+#best val by w = 0.3, fp = 2, fg = 15 is 250.8512847429756
+#best val by w = 0.3, fp = 3, fg = 3 is 212.89122853639924
+#best val by w = 0.3, fp = 3, fg = 5 is 282.19775766847954
+#best val by w = 0.3, fp = 3, fg = 8 is 78.26449685551408
+#best val by w = 0.3, fp = 3, fg = 15 is 201.77855256657307
+#best val by w = 0.3, fp = 4.5, fg = 3 is 101.7205867717656
+#best val by w = 0.3, fp = 4.5, fg = 5 is 39.181243373144405
+#best val by w = 0.3, fp = 4.5, fg = 8 is 31.339807579184082
+#best val by w = 0.3, fp = 4.5, fg = 15 is 136.71496136204559
+#best val by w = 0.5, fp = 1, fg = 3 is 7966.104488676415
+#best val by w = 0.5, fp = 1, fg = 5 is 31.85174765332643
+#best val by w = 0.5, fp = 1, fg = 8 is 119.51737439099381
+#best val by w = 0.5, fp = 1, fg = 15 is 343.21190707573186
+#best val by w = 0.5, fp = 2, fg = 3 is 19.69118760870259
+#best val by w = 0.5, fp = 2, fg = 5 is 355.5573149722314
+#best val by w = 0.5, fp = 2, fg = 8 is 124.35986298683065
+#best val by w = 0.5, fp = 2, fg = 15 is 159.73058691572118
+#best val by w = 0.5, fp = 3, fg = 3 is 91.73431812681028
+#best val by w = 0.5, fp = 3, fg = 5 is 348.8643367168582
+#best val by w = 0.5, fp = 3, fg = 8 is 103.67897134960793
+#best val by w = 0.5, fp = 3, fg = 15 is 239.28420706187788
+#best val by w = 0.5, fp = 4.5, fg = 3 is 128.31342837632542
+#best val by w = 0.5, fp = 4.5, fg = 5 is 184.85393346379036
+#best val by w = 0.5, fp = 4.5, fg = 8 is 24.808161917042987
+#best val by w = 0.5, fp = 4.5, fg = 15 is 151.67171420308466
+#best val by w = 0.8, fp = 1, fg = 3 is 11473.562212656598
+#best val by w = 0.8, fp = 1, fg = 5 is 60.83786609973994
+#best val by w = 0.8, fp = 1, fg = 8 is 136.37066252443586
+#best val by w = 0.8, fp = 1, fg = 15 is 384.96175871884816
+#best val by w = 0.8, fp = 2, fg = 3 is 12.05219722035246
+#best val by w = 0.8, fp = 2, fg = 5 is 157.38773631834732
+#best val by w = 0.8, fp = 2, fg = 8 is 480.3721790650163
+#best val by w = 0.8, fp = 2, fg = 15 is 122.24297005195243
+#best val by w = 0.8, fp = 3, fg = 3 is 94.49827014281807
+#best val by w = 0.8, fp = 3, fg = 5 is 227.97483895242695
+#best val by w = 0.8, fp = 3, fg = 8 is 155.60665206056973
+#best val by w = 0.8, fp = 3, fg = 15 is 253.34803362736002
+#best val by w = 0.8, fp = 4.5, fg = 3 is 64.920748391647
+#best val by w = 0.8, fp = 4.5, fg = 5 is 73.96529195451255
+#best val by w = 0.8, fp = 4.5, fg = 8 is 28.47149810229648
+#best val by w = 0.8, fp = 4.5, fg = 15 is 130.0584088063038
+
+```
+
+
+## Animations of working
 
 ![1](https://github.com/PasaOpasen/BeehiveMethod/blob/master/images/Shvel%20function_movie.gif)
 
