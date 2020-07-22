@@ -36,7 +36,7 @@ tagret_result = -global_min
 ```
 
 
-### 1st: creating bees
+### 1st step: creating bees
 
 U should create random bees (points) on the scope of the function definition. There are several ways:
 
@@ -117,7 +117,10 @@ bees.show()
 
 ```
 
+### 2nd step: create hive and get result
 
+
+## Ways to get best solution
 
 
 
