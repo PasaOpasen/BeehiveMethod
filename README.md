@@ -1,3 +1,6 @@
+[![PyPI
+version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/project/BeeHiveOptimization/)
+
 # Beehive method
 
 Implementation of beehive method for global optimization of multidimentional functions
