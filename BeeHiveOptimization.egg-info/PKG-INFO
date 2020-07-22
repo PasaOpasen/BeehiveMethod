@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: BeeHiveOptimization
+Version: 1.0.1
+Summary: Implementation of beehive method for global optimization of multidimentional functions
+Home-page: https://github.com/PasaOpasen/BeehiveMethod
+Author: Demetry Pascal
+Author-email: qtckpuhdsa@gmail.com
+License: MIT
+Download-URL: https://github.com/PasaOpasen/BeehiveMethod/archive/1.0.1.tar.gz
+Description: UNKNOWN
+Keywords: beehive_method,optimization,function-optimization,stochastic-optimization
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
