@@ -1,6 +1,10 @@
 [![PyPI
 version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/project/BeeHiveOptimization/)
 
+```
+pip install BeeHiveOptimization
+```
+
 - [Beehive method](#beehive-method)
   * [Steps of algorithm](#steps-of-algorithm)
     + [0 step: creating a function](#0-step--creating-a-function)
