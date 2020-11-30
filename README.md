@@ -1,5 +1,6 @@
 [![PyPI
 version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/project/BeeHiveOptimization/)
+[![Gitter](https://badges.gitter.im/BeehiveMethod/community.svg)](https://gitter.im/BeehiveMethod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ```
 pip install BeeHiveOptimization
