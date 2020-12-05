@@ -6,7 +6,7 @@ version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/pro
 ```
 pip install BeeHiveOptimization
 ```
-Implementation of beehive method for global optimization of multidimentional functions
+Implementation of beehive method for global optimization of multidimentional functions. It's rewrite of [my C#-implementation](https://github.com/PasaOpasen/MathClasses#swarm-algorithm)
 
 - [Beehive method](#beehive-method)
   - [Steps of algorithm](#steps-of-algorithm)
