@@ -2,22 +2,20 @@
 version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/project/BeeHiveOptimization/)
 [![Gitter](https://badges.gitter.im/BeehiveMethod/community.svg)](https://gitter.im/BeehiveMethod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+# Beehive method
 ```
 pip install BeeHiveOptimization
 ```
+Implementation of beehive method for global optimization of multidimentional functions
 
 - [Beehive method](#beehive-method)
-  * [Steps of algorithm](#steps-of-algorithm)
-    + [0 step: creating a function](#0-step--creating-a-function)
-    + [1st step: creating bees](#1st-step--creating-bees)
-    + [2nd step: create hive and get result](#2nd-step--create-hive-and-get-result)
-  * [Ways to get best solution](#ways-to-get-best-solution)
-  * [Animations of working](#animations-of-working)
+  - [Steps of algorithm](#steps-of-algorithm)
+    - [0 step: creating a function](#0-step-creating-a-function)
+    - [1st step: creating bees](#1st-step-creating-bees)
+    - [2nd step: create hive and get result](#2nd-step-create-hive-and-get-result)
+  - [Ways to get best solution](#ways-to-get-best-solution)
+  - [Animations of working](#animations-of-working)
 
-
-# Beehive method
-
-Implementation of beehive method for global optimization of multidimentional functions
 
 ## Steps of algorithm
 
