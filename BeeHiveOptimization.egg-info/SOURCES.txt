@@ -1,4 +1,5 @@
 README.md
+README.rst
 setup.cfg
 setup.py
 BeeHiveOptimization/Beehive.py
