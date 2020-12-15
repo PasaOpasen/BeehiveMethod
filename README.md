@@ -1,5 +1,9 @@
 [![PyPI
 version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/project/BeeHiveOptimization/)
+[![Downloads](https://pepy.tech/badge/BeeHiveOptimization)](https://pepy.tech/project/BeeHiveOptimization)
+[![Downloads](https://pepy.tech/badge/BeeHiveOptimization/month)](https://pepy.tech/project/BeeHiveOptimization)
+[![Downloads](https://pepy.tech/badge/BeeHiveOptimization/week)](https://pepy.tech/project/BeeHiveOptimization)
+
 [![Gitter](https://badges.gitter.im/BeehiveMethod/community.svg)](https://gitter.im/BeehiveMethod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Beehive method
