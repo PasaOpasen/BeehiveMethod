@@ -10,7 +10,7 @@ version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/pro
 ```
 pip install BeeHiveOptimization
 ```
-Implementation of beehive method for global optimization of multidimentional functions. It's rewrite of [my C#-implementation](https://github.com/PasaOpasen/MathClasses#swarm-algorithm)
+Implementation of **beehive method** (*particle swarm optimization*) for global optimization of multidimentional functions. It's rewrite of [my C#-implementation](https://github.com/PasaOpasen/MathClasses#swarm-algorithm)
 
 - [Beehive method](#beehive-method)
   - [Steps of algorithm](#steps-of-algorithm)
@@ -19,6 +19,7 @@ Implementation of beehive method for global optimization of multidimentional fun
     - [2nd step: create hive and get result](#2nd-step-create-hive-and-get-result)
   - [Ways to get best solution](#ways-to-get-best-solution)
   - [Animations of working](#animations-of-working)
+- [See also](#see-also)
 
 
 ## Steps of algorithm
@@ -312,6 +313,12 @@ for w in (0.1,0.3,0.5,0.8):
 
 ![1](https://github.com/PasaOpasen/BeehiveMethod/blob/master/images/Shvel%20function%20with%20noise%20(2d)_movie.gif)
 
+# See also
+
+It can be very useful to use also:
+
+* [OppOpPopInit](https://github.com/PasaOpasen/opp-op-pop-init#population-initializers) package for initialize population and using opposition learning strategy
+* [OptimizationTestFunctions](https://github.com/PasaOpasen/OptimizationTestFunctions) package for handle several classic test functions
 
 
 

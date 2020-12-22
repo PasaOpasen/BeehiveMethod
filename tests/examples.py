@@ -4,7 +4,8 @@ Created on Wed Jul 22 13:26:31 2020
 
 @author: qtckp
 """
-
+import sys
+sys.path.append('..')
 
 from BeeHiveOptimization import Bees, Hive, BeeHive, TestFunctions, RandomPuts
 

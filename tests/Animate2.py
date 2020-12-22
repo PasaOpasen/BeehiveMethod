@@ -4,13 +4,18 @@ Created on Tue Jul 21 16:41:53 2020
 
 @author: qtckp
 """
+import sys
+sys.path.append('..')
 
-from Beehive import *
+
+import math
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
-import math
-import os
+
+from BeeHiveOptimization import *
 
 
 route = os.path.join(os.path.dirname(__file__), 'images')

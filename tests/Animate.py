@@ -5,11 +5,16 @@ Created on Tue Jul 21 16:41:53 2020
 @author: qtckp
 """
 
-from Beehive import *
-import numpy as np
-import matplotlib.pyplot as plt
+import sys
+sys.path.append('..')
+
 import math
 import os
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+from BeeHiveOptimization import *
 
 
 route = os.path.join(os.path.dirname(__file__), 'images')

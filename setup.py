@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
   name = 'BeeHiveOptimization',         # How you named your package folder (MyLib)
-  version = '1.0.3',      # Start with a small number and increase it with every change you make
+  version = '1.0.4',      # Start with a small number and increase it with every change you make
   license = 'MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Implementation of beehive method (particle swarm optimization) for global optimization of multidimentional functions',   # Give a short description about your library
   long_description=long_description,
@@ -15,7 +15,7 @@ setup(
   author_email = 'qtckpuhdsa@gmail.com',      # Type in your E-Mail
   url = 'https://github.com/PasaOpasen/BeehiveMethod',   # Provide either the link to your github or to your website
  # download_url = 'https://github.com/PasaOpasen/BeehiveMethod/archive/1.0.1.tar.gz',    # I explain this later on
-  keywords = ['beehive_method', 'optimization', 'function-optimization', 'stochastic-optimization', 'swarm particle'],   # Keywords that define your package best
+  keywords = ['beehive_method', 'optimization', 'function-optimization', 'stochastic-optimization', 'swarm particle', 'particle swarm optimization'],   # Keywords that define your package best
   
   install_requires=[            # I get to this in a second
           'joblib',

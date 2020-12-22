@@ -12,20 +12,19 @@ from joblib import Parallel, delayed
 
 
 
-class RandomPuts:
-    @staticmethod
-    def Uniform(minimum, maximum, size):
-        return lambda: np.random.uniform(minimum, maximum, size)
-    @staticmethod
-    def Normal(mean, std, size):
-        return lambda: np.random.normal(mean, std, size)
-
-
-
 class Bees:
     
     def __init__(self, bees, width = None):
-        
+        #, tolerable_go_out_of_bounds = False
+        #if tolerable_go_out_of_bounds:
+        #    self.update = lambda x,v: x+v
+        #else:
+        #    def upd(x, v):
+        #        new = x+v
+
+
+
+
         if width == None:
             #width = np.absolute(bees).max()
             width = (bees.max()-bees.min())*100/bees.shape[0]
@@ -178,16 +177,6 @@ class BeeHive:
         return hive.get_result(max_step_count, max_fall_count, w, fp,fg, latency, verbose)
 
 
-class TestFunctions:
-    @staticmethod
-    def Parabol(arr):
-        return np.sum(arr**2)
-    @staticmethod
-    def Rastrigin(arr):
-        return 10*arr.size+TestFunctions.Parabol(arr) - 10*np.sum(np.cos(2*math.pi*arr))
-    @staticmethod
-    def Shvel(arr):
-        return -np.sum(arr*np.sin(np.sqrt(np.abs(arr))))
     
 
 
