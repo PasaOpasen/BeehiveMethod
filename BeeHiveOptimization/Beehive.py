@@ -5,6 +5,8 @@ Created on Mon Jul 20 17:28:36 2020
 @author: qtckp
 """
 
+import time
+
 import numpy as np
 import random
 import math
@@ -49,8 +51,7 @@ class Bees:
         self.vals = self.get_vals()
         
     def make_step(self, w, fp, fg, best_pos, best_val):
-        
-        
+           
         self.x += self.v
         
         
@@ -110,8 +111,10 @@ class Hive:
             print(f"total bees: {self.bees.x.shape[0]}")
             print(f"best value (at beggining): {self.best_val}")
         
-    def get_result(self, max_step_count = 100, max_fall_count = 30, w = 0.3, fp = 2, fg = 5, latency = 1e-9,verbose = True):
+    def get_result(self, max_step_count = 100, max_fall_count = 30, w = 0.3, fp = 2, fg = 5, latency = 1e-9, verbose = True, max_time_seconds = None):
         
+        start_time = time.time()
+        times_done = (lambda: False) if max_time_seconds is None else (lambda: time.time() - start_time > max_time_seconds)
         
         if latency != None:
             latency = 1 - latency
@@ -143,8 +146,7 @@ class Hive:
                     print(f'new best value = {self.best_val} after {i} iteration')
                     val = self.best_val
                 
-                
-                
+
             else:
                 
                 count_fall+=1
@@ -154,6 +156,10 @@ class Hive:
                 if verbose:
                     print(f'I should stop after {count_fall} fallen iterations')
                     
+                return self.best_val, self.best_pos
+            
+            if times_done():
+                print('Time is done!')
                 return self.best_val, self.best_pos
         
         return self.best_val, self.best_pos
@@ -170,11 +176,11 @@ class BeeHive:
     def Minimize(func, bees, 
                  max_step_count = 100, max_fall_count = 30, 
                  w = 0.3, fp = 2, fg = 5, latency = 1e-9, 
-                 verbose = True, parallel = False):
+                 verbose = True, parallel = False, max_time_seconds = None):
         #bees = Bees(bees, width)
         hive = Hive(bees, func, parallel , verbose)
         
-        return hive.get_result(max_step_count, max_fall_count, w, fp,fg, latency, verbose)
+        return hive.get_result(max_step_count, max_fall_count, w, fp,fg, latency, verbose, max_time_seconds=max_time_seconds)
 
 
     

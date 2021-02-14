@@ -161,7 +161,8 @@ best_result, best_position = hive.get_result(max_step_count = 25, # maximun coun
                       max_fall_count = 6, # maximum count of continious iterations without better result
                       w = 0.3, fp = 2, fg = 5, # parameters of algorithm
                       latency = 1e-9, # if new_result/old_result > 1-latency then it was the iteration without better result
-                      verbose = True # show the progress
+                      verbose = True, # show the progress
+                      max_time_seconds = None # max seconds of working 
                       )
 
 #new best value = 0.22369081290807669 after 4 iteration

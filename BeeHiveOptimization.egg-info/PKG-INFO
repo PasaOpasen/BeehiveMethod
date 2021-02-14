@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: BeeHiveOptimization
-Version: 1.0.4
+Version: 1.1.0
 Summary: Implementation of beehive method (particle swarm optimization) for global optimization of multidimentional functions
 Home-page: https://github.com/PasaOpasen/BeehiveMethod
 Author: Demetry Pascal
@@ -169,7 +169,8 @@ Description: [![PyPI
                               max_fall_count = 6, # maximum count of continious iterations without better result
                               w = 0.3, fp = 2, fg = 5, # parameters of algorithm
                               latency = 1e-9, # if new_result/old_result > 1-latency then it was the iteration without better result
-                              verbose = True # show the progress
+                              verbose = True, # show the progress
+                              max_time_seconds = None # max seconds of working 
                               )
         
         #new best value = 0.22369081290807669 after 4 iteration
