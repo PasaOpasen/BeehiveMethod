@@ -10,7 +10,7 @@ version](https://badge.fury.io/py/BeeHiveOptimization.svg)](https://pypi.org/pro
 ```
 pip install BeeHiveOptimization
 ```
-Implementation of **beehive method** (*particle swarm optimization*) for global optimization of multidimentional functions. It's rewrite of [my C#-implementation](https://github.com/PasaOpasen/MathClasses#swarm-algorithm)
+Implementation (from [DPEA](https://github.com/PasaOpasen/PasaOpasen.github.io/blob/master/EA_packages.md)) of **beehive method** (*particle swarm optimization*) for global optimization of multidimentional functions. It's optimized rewrite of [my C#-implementation](https://github.com/PasaOpasen/MathClasses#swarm-algorithm)
 
 - [Beehive method](#beehive-method)
   - [Steps of algorithm](#steps-of-algorithm)
